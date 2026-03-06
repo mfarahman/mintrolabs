@@ -12,7 +12,7 @@
    RESET & BASE
 ══════════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; } 
 
 :root {
   --black:     #080808;
@@ -853,8 +853,8 @@ footer {
 <body>
 
 <!-- Cursor -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
 
 <!-- ══ NAV ══ -->
 <nav id="nav">
@@ -1071,6 +1071,59 @@ footer {
       <p class="svc-desc">Data-driven campaigns — SEO, paid ads, and social media — that grow your audience and compound revenue over time.</p>
       <div class="svc-tags">
         <span class="tag">SEO</span><span class="tag">PPC</span><span class="tag">Social</span><span class="tag">Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORK ══ -->
+<section class="section section-alt" id="work">
+  <div class="work-head">
+    <div>
+      <div class="s-eyebrow reveal">Portfolio</div>
+      <h2 class="s-heading reveal">Selected Work</h2>
+    </div>
+    <a href="#contact" class="btn-secondary reveal">All Projects</a>
+  </div>
+  <div class="work-grid">
+    <div class="work-item wi-1 reveal">
+      <div class="work-bg-text">FINTECH</div>
+      <div class="work-info">
+        <div class="work-cat">Web App · Finance</div>
+        <div class="work-title">PayEase Dashboard</div>
+        <div class="work-desc">Real-time payments platform with analytics and multi-currency support.</div>
+      </div>
+    </div>
+    <div class="work-item wi-2 reveal d1">
+      <div class="work-bg-text">BRAND</div>
+      <div class="work-info">
+        <div class="work-cat">Brand Identity</div>
+        <div class="work-title">Nomad Co. Rebrand</div>
+        <div class="work-desc">Complete visual identity for a sustainable travel company.</div>
+      </div>
+    </div>
+    <div class="work-item wi-3 reveal d2">
+      <div class="work-bg-text">MOBILE</div>
+      <div class="work-info">
+        <div class="work-cat">Mobile App · Productivity</div>
+        <div class="work-title">TaskFlow Pro</div>
+        <div class="work-desc">AI-assisted project management app for iOS and Android.</div>
+      </div>
+    </div>
+    <div class="work-item wi-4 reveal">
+      <div class="work-bg-text">ECOM</div>
+      <div class="work-info">
+        <div class="work-cat">E-Commerce · Retail</div>
+        <div class="work-title">Ceylon Craft Store</div>
+        <div class="work-desc">High-converting online store with custom product configurator.</div>
+      </div>
+    </div>
+    <div class="work-item wi-5 reveal d1">
+      <div class="work-bg-text">SAAS</div>
+      <div class="work-info">
+        <div class="work-cat">SaaS · HR Tech</div>
+        <div class="work-title">HireLoop Platform</div>
+        <div class="work-desc">End-to-end recruitment SaaS with automation workflows.</div>
       </div>
     </div>
   </div>
@@ -1302,47 +1355,41 @@ footer {
     <div class="footer-col">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:contact@mintrolabs.com">info.mintrolabs@gmail.com</a></li>
+        <li><a href="mailto:contact@mintrolabs.com">contact@mintrolabs.com</a></li>
         <li><a href="tel:+94770682786">+94 77 068 2786</a></li>
         <li><a href="#">Colombo, Sri Lanka</a></li>
+        <li><a href="https://instagram.com/gomintro" target="_blank">@gomintro</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2025 Mintrolabs Pvt Ltd. All rights reserved | Colombo, Sri Lanka</div>
+    <div class="footer-copy">© 2025 Mintrolabs Pvt Ltd. All rights reserved. | Abdur Rahman Faizal, Founder & CEO</div>
+    <div class="footer-right">Colombo · Sri Lanka</div>
   </div>
 </footer>
 
 <script>
-  // Custom Cursor
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx - 4 + 'px';
-    cursor.style.top = my - 4 + 'px';
-  });
-  function animateRing() {
-    rx += (mx - rx - 18) * 0.12;
-    ry += (my - ry - 18) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  }
-  animateRing();
-  document.querySelectorAll('a, button, .service-card, .why-feature, .review-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2.5)';
-      ring.style.transform = 'scale(1.4)';
-      ring.style.borderColor = 'rgba(201,168,76,0.8)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-      ring.style.transform = 'scale(1)';
-      ring.style.borderColor = 'rgba(201,168,76,0.5)';
-    });
-  });
+// ── Cursor
+const dot = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+(function animCursor() {
+  dot.style.left  = mx + 'px';
+  dot.style.top   = my + 'px';
+  rx += (mx - rx) * .13;
+  ry += (my - ry) * .13;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(animCursor);
+})();
+
+document.querySelectorAll('a, button, .svc-card, .work-item, .why-card, .stat-box, .testi-card, .proc-step').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hov'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hov'));
+});
 
 // ── Nav scroll
 const nav = document.getElementById('nav');
