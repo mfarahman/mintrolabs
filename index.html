@@ -1413,7 +1413,7 @@ revEls.forEach(el => revObs.observe(el));
 document.getElementById('submitBtn').addEventListener('click', function () {
   const orig = this.textContent;
   this.textContent = 'Message Sent ✓';
-  this.style.background = '#1a1a1a';
+  this.style.background = '#1a1a1a'; 
   this.style.color = '#fff';
   setTimeout(() => {
     this.textContent = orig;
